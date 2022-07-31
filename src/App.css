@@ -1,0 +1,30 @@
+@import url("https://rsms.me/inter/inter.css");
+body {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  body {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+.dog_msj {
+  font-size: 2rem;
+  font-weight: bold;
+  color: cadetblue;
+}
+
+.dog_btn {
+  background-color: lightgray;
+  color: white;
+  font-family: "Inter var";
+  font-weight: bold;
+  border-radius: 3%;
+  width: 130;
+  height: 25;
+  border: none;
+  margin-top: 50;
+  margin-bottom: 50;
+  margin-left: 585;
+  cursor: pointer;
+}

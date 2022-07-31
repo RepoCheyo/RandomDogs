@@ -1,13 +1,21 @@
-.img_container {
-    width: 100%;
-    height: 100%;
-    margin-left: 585;
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
 
+.img_container {
+  width: 100%;
+  height: 100%;
+  margin-left: 585;
 }
 
 .img {
-    height: 90vh;
-    width: 90vh;
-    margin-left: 585;
-    
+  height: 90vh;
+  width: 90vh;
+  margin-left: 585;
 }
