@@ -25,7 +25,7 @@ function App() {
           height: 30,
           width: 300,
           borderRadius: 5,
-          marginTop: 50,
+          marginTop: 20,
           marginLeft: 490,
         }}
         onClick={getDog}
