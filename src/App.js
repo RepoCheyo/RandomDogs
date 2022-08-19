@@ -19,7 +19,18 @@ function App() {
 
   return (
     <div className="App" style={{ alignItems: "center" }}>
-      <button className="dog_btn" onClick={getDog} type="submit">
+      <button
+        className="dog_btn"
+        style={{
+          height: 30,
+          width: 300,
+          borderRadius: 5,
+          marginTop: 50,
+          marginLeft: 490,
+        }}
+        onClick={getDog}
+        type="submit"
+      >
         See a cute dog
       </button>
 

@@ -12,19 +12,15 @@ body {
   font-size: 2rem;
   font-weight: bold;
   color: cadetblue;
+  text-align: center;
 }
 
 .dog_btn {
-  background-color: lightgray;
+  background-color: rgb(255, 0, 55);
   color: white;
   font-family: "Inter var";
   font-weight: bold;
   border-radius: 3%;
-  width: 130;
-  height: 25;
   border: none;
-  margin-top: 50;
-  margin-bottom: 50;
-  margin-left: 585;
   cursor: pointer;
 }
