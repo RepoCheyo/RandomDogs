@@ -2,7 +2,7 @@
 
 ## This project has:
 
-- API REST
+- API REST (For fetching the dogs image)
 
 ## Future Integrations:
 
