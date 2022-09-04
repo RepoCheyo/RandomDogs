@@ -3,6 +3,7 @@
 ## This project has:
 
 - API REST (For fetching the dogs image)
+- Loading animation (While the user sends the request for the image) 
 
 ## Future Integrations:
 
