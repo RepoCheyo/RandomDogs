@@ -1,8 +1,7 @@
 import "./styles/App.css";
 import { useState } from "react";
 import Dog from "./components/Dog";
-import { MutatingDots } from "react-loader-spinner";
-import { useEffect } from "react";
+import { RotatingLines } from "react-loader-spinner";
 
 function App() {
   const [dog, setDog] = useState(null);
@@ -46,16 +45,12 @@ function App() {
       {!load && !dog ? (
         <p className="dog_msj">Here will be your dog</p>
       ) : load && !dog ? (
-        <div style={{ marginLeft: 585 }}>
-          <MutatingDots
-            height="100"
-            width="100"
-            color="#fca311"
-            secondaryColor="#ffea00"
-            radius="12.5"
-            ariaLabel="mutating-dots-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
+        <div style={{ marginLeft: 625, marginTop: 15 }}>
+          <RotatingLines
+            strokeColor="#cee5f2"
+            strokeWidth="6"
+            animationDuration="0.75"
+            width="20"
             visible={true}
           />
         </div>
