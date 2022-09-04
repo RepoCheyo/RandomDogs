@@ -2,13 +2,14 @@ import "./styles/App.css";
 import { useState } from "react";
 import Dog from "./components/Dog";
 import { MutatingDots } from "react-loader-spinner";
+import { useEffect } from "react";
 
 function App() {
   const [dog, setDog] = useState(null);
   const [load, setLoading] = useState(false); // Se declara el state inicial del loader
 
   const getDog = async () => {
-    // Se cmabia el estado a true para que el loader se renderice
+    // Se cambia el estado a true para que el loader se renderice
     setLoading(true);
 
     // Obtener respuesta de la API
@@ -45,12 +46,12 @@ function App() {
       {!load && !dog ? (
         <p className="dog_msj">Here will be your dog</p>
       ) : load && !dog ? (
-        <div className="loader-container">
+        <div style={{ marginLeft: 585 }}>
           <MutatingDots
             height="100"
             width="100"
-            color="#4fa94d"
-            secondaryColor="#4fa94d"
+            color="#fca311"
+            secondaryColor="#ffea00"
             radius="12.5"
             ariaLabel="mutating-dots-loading"
             wrapperStyle={{}}
