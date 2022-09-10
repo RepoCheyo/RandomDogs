@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Dog.css";
+import "../../styles/Dog.css";
 
 function Dog(props) {
   return (
