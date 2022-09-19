@@ -13,9 +13,9 @@ export default function Error() {
         className="dog_gif"
         src="https://c.tenor.com/TUmjIWdiLIcAAAAd/dog-door-dog-dance.gif"
       />
-      <div>
+      <div className="link_container">
         <Link className="link_home" to="/">
-          Get your dog
+          Find a dog
         </Link>
       </div>
     </div>
