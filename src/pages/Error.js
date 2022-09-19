@@ -9,6 +9,7 @@ export default function Error() {
         The page you are looking for does not exists
       </p>
       <img
+        alt="dog_gif"
         className="dog_gif"
         src="https://c.tenor.com/TUmjIWdiLIcAAAAd/dog-door-dog-dance.gif"
       />
