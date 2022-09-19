@@ -1,0 +1,21 @@
+.error_container {
+  margin: auto;
+  width: 50%;
+  padding: 100px;
+  text-align: center;
+}
+
+.error_message {
+  color: darkturquoise;
+}
+
+.dog_gif {
+  border-radius: 5%;
+  width: 30%;
+}
+
+.link_home {
+  text-decoration: none;
+  font-weight: bolder;
+  color: #0099fd;
+}
