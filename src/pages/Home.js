@@ -18,9 +18,9 @@ function Home() {
     const dogApi = await api.json();
 
     // Insertar el link de la imagen en consola
-    console.log(dogApi.message);
+    console.log(dogApi);
     // Cambiar el State de null a setDog al link de la API
-    setDog(dogApi.message);
+    setDog(dogApi);
 
     // Finalmente se regresa el estado al inicial para desmontar el componente
     setLoading(false);
@@ -55,7 +55,7 @@ function Home() {
           />
         </div>
       ) : (
-        <Dog dogImage={dog} />
+        <Dog dogImage={dog.message} />
       )}
     </div>
   );
