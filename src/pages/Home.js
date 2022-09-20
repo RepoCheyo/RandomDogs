@@ -55,7 +55,7 @@ function Home() {
           />
         </div>
       ) : (
-        <Dog dogImage={dog.message} />
+        <Dog dogImage={dog.message} /> // dog = a la API regresando el objeto y el .message es para acceder al link de la imagen
       )}
     </div>
   );
