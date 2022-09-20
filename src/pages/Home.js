@@ -17,9 +17,9 @@ function Home() {
     // Obtener el contenido de la API en JSON (message[linkDeImagen] & status)
     const dogApi = await api.json();
 
-    // Insertar el link de la imagen en consola
+    // Insertar el objeto que contiene el link de la imagen en consola
     console.log(dogApi);
-    // Cambiar el State de null a setDog al link de la API
+    // Cambiar el State de null a setDog al objeto de la API
     setDog(dogApi);
 
     // Finalmente se regresa el estado al inicial para desmontar el componente
