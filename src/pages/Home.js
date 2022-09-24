@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/Home.css";
 import { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
+import { getAuth } from "firebase/auth";
 import Dog from "../components/home/Dog";
 
 function Home() {
