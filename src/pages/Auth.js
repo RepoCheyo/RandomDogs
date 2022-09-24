@@ -22,21 +22,27 @@ function Auth() {
   };
 
   return (
-    <div>
-      <p>Auth</p>
-      <input
-        placeholder="Email"
-        type="text"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      ></input>
-      <input
-        placeholder="Password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      ></input>
-      <button onClick={signUp}>Sign Up</button>
+    <div className="login">
+      <p>Sign Up</p>
+      <form className="form_container">
+        <h5>E-mail</h5>
+        <input
+          type="text"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        ></input>
+        <h5>Password</h5>
+
+        <input
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        ></input>
+
+        <button onClick={signUp} className="sign-up_button">
+          Sign Up
+        </button>
+      </form>
     </div>
   );
 }
