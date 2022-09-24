@@ -23,9 +23,17 @@ function Auth() {
 
   return (
     <div className="login">
-      <p>Sign Up</p>
       <form className="form_container">
+        <div className="gif_container">
+          <img
+            alt="dog"
+            src="https://i.pinimg.com/originals/fb/1c/0c/fb1c0c48488b0ff156ac373505f5433a.gif"
+            className="dog_gif"
+          />
+          <h1>Welcome to Random Dogs</h1>
+        </div>
         <h5>E-mail</h5>
+
         <input
           type="text"
           onChange={(e) => setEmail(e.target.value)}
