@@ -9,6 +9,7 @@ function Auth() {
   const [password, setPassword] = useState();
   const [user, setUser] = useState(null);
 
+  // Sign In Function
   const signIn = (e) => {
     e.prevenDefault();
 
@@ -24,6 +25,7 @@ function Auth() {
       });
   };
 
+  // Hook once the page loads to redirect the user from the form to the main page
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -40,7 +42,8 @@ function Auth() {
 
   return (
     <div className="login">
-      {user && <Navigate to="/" replace={true} />}
+      {// Condition to redirect the user
+      user && <Navigate to="/" replace={true} />}
       <form className="form_container">
         <div className="gif_container">
           <img
