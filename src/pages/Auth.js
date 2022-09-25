@@ -27,7 +27,7 @@ function Auth() {
 
   return (
     <div className="login">
-      <form className="form_container">
+      <div className="hero_container">
         <div className="gif_container">
           <img
             alt="dog"
@@ -36,15 +36,17 @@ function Auth() {
           />
           <h1>Welcome Back</h1>
         </div>
-        <h5>E-mail</h5>
+      </div>
 
+      <form className="form_container">
+        <h5>E-mail</h5>
         <input
           type="text"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         ></input>
-        <h5>Password</h5>
 
+        <h5>Password</h5>
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}

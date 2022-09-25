@@ -45,7 +45,11 @@ function Home() {
 
   return (
     <div className="Home">
-      <button onClick={handleSignOut}>Log Out</button>
+      <div className="nav_bar">
+        <button className="logout_btn" onClick={handleSignOut}>
+          Log Out
+        </button>
+      </div>
       <button
         className="dog_btn"
         style={{
