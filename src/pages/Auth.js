@@ -34,7 +34,7 @@ function Auth() {
             src="https://i.pinimg.com/originals/fb/1c/0c/fb1c0c48488b0ff156ac373505f5433a.gif"
             className="dog_gif"
           />
-          <h1>Welcome Back</h1>
+          <h1>Welcome back</h1>
         </div>
       </div>
 
