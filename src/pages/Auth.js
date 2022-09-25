@@ -1,49 +1,32 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Auth.css";
-import { signOut, signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { auth } from "../FirebaseConfig";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Auth() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [user, setUser] = useState(null);
 
   // Sign In Function
   const signIn = (e) => {
-    e.prevenDefault();
+    e.preventDefault();
 
-    const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // ...
+        navigate("/"); // Once the user signs in redirects to the Home page
       })
       .catch((error) => {
         alert(error.message);
       });
   };
 
-  // Hook once the page loads to redirect the user from the form to the main page
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        // User logged in
-        setUser(userAuth);
-      } else {
-        // User logged out
-        setUser(null);
-      }
-    });
-
-    return unsubscribe;
-  }, []);
-
   return (
     <div className="login">
-      {// Condition to redirect the user
-      user && <Navigate to="/" replace={true} />}
       <form className="form_container">
         <div className="gif_container">
           <img

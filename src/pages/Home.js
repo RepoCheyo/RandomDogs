@@ -2,10 +2,13 @@ import React from "react";
 import "../styles/Home.css";
 import { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
-import { getAuth } from "firebase/auth";
+import { signOut } from "firebase/auth";
+import { auth } from "../FirebaseConfig";
 import Dog from "../components/home/Dog";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
   const [dog, setDog] = useState(null);
   const [load, setLoading] = useState(false); // Se declara el state inicial del loader
 
@@ -27,8 +30,22 @@ function Home() {
     setLoading(false);
   };
 
+  //signOut function to redirect
+  const handleSignOut = (e) => {
+    e.preventDefault();
+
+    signOut(auth)
+      .then(() => {
+        navigate("login");
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
+
   return (
     <div className="Home">
+      <button onClick={handleSignOut}>Log Out</button>
       <button
         className="dog_btn"
         style={{
