@@ -30,7 +30,7 @@ function Home() {
     setLoading(false);
   };
 
-  //signOut function to redirect
+  //signOut function to redirect the user to the form page
   const handleSignOut = (e) => {
     e.preventDefault();
 
