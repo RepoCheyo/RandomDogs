@@ -3,15 +3,19 @@ import "../styles/Auth.css";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { auth } from "../FirebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
 
 function Auth() {
   const navigate = useNavigate();
+
+  const [load, setLoading] = useState(false); // Se declara el state inicial del loader
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
   // Sign In Function
   const signIn = (e) => {
+    setLoading(true);
     e.preventDefault();
 
     signInWithEmailAndPassword(auth, email, password)
@@ -22,6 +26,7 @@ function Auth() {
       })
       .catch((error) => {
         alert(error.message);
+        setLoading(false);
       });
   };
 
@@ -53,9 +58,25 @@ function Auth() {
           value={password}
         ></input>
 
-        <button onClick={signIn} className="sign-up_button">
-          Sign In
-        </button>
+        {load ? (
+          <button
+            disabled
+            className="sign-up_button"
+            style={{ backgroundColor: "rgb(0, 118, 214)" }}
+          >
+            <RotatingLines
+              strokeColor="white"
+              strokeWidth="5"
+              animationDuration="0.6"
+              width="17"
+              visible={true}
+            />
+          </button>
+        ) : (
+          <button onClick={signIn} className="sign-up_button">
+            Sign In
+          </button>
+        )}
       </form>
     </div>
   );
