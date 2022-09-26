@@ -13,3 +13,15 @@
 - Redux (Add a modal where all the dogs photos are rendered)
 - TypeScript
 - Framer Motion
+
+## Close additions:
+
+- Reset password
+- Sign Up page and funcitonality (With profile preview of name, profile picture with the upload functionality or link)
+- Navbar design
+- Form validation with error feedback
+- Get the user location everytime it Logs In and Logs Out with time
+- Redux functionality to pass the user data alogn the App
+- Add doc everytime the API is called with that make a history page with all the dogs that they have seen
+- Like button on each called photo (Firebase & Redux)
+
