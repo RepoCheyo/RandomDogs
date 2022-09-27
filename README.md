@@ -9,11 +9,10 @@
 
 ## Close additions:
 
-- Toasts Notifications
 - Not Logged user page styling and design
 - Sign Up page and funcitonality (With profile preview of name, profile picture with the upload functionality or link)
 - Navbar design
-- Form validation with error feedback
+- Form validation with error feedback (Toasts Notifications and under the input field)
 - Get the user location everytime it Logs In and Logs Out with time
 - Redux functionality to pass the user data alogn the App
 - Add doc everytime the API is called with that make a history page with all the dogs that they have seen
