@@ -9,7 +9,7 @@
 
 ## Close additions:
 
-- Reset password
+- Toasts Notifications
 - Not Logged user page styling and design
 - Sign Up page and funcitonality (With profile preview of name, profile picture with the upload functionality or link)
 - Navbar design
