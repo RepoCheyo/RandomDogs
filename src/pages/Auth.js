@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../styles/Auth.css";
-import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../FirebaseConfig";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
 
 function Auth() {
@@ -51,7 +51,12 @@ function Auth() {
           value={email}
         ></input>
 
-        <h5>Password</h5>
+        <div className="password-container">
+          <h5>Password</h5>
+          <Link to="/resetpassword" className="reset-pass">
+            Forgot password?
+          </Link>
+        </div>
         <input
           type="password"
           onChange={(e) => setPassword(e.target.value)}
@@ -62,7 +67,7 @@ function Auth() {
           <button
             disabled
             className="sign-up_button"
-            style={{ backgroundColor: "rgb(0, 118, 214)" }}
+            style={{ backgroundColor: "rgb(0, 188, 100)" }}
           >
             <RotatingLines
               strokeColor="white"
@@ -74,7 +79,7 @@ function Auth() {
           </button>
         ) : (
           <button onClick={signIn} className="sign-up_button">
-            Sign In
+            Sign in
           </button>
         )}
       </form>

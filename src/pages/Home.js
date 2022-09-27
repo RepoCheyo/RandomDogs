@@ -1,16 +1,18 @@
 import React from "react";
 import "../styles/Home.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../FirebaseConfig";
 import Dog from "../components/home/Dog";
 import { useNavigate } from "react-router-dom";
+import NotLogged from "../components/home/NotLogged";
 
 function Home() {
   const navigate = useNavigate();
   const [dog, setDog] = useState(null);
   const [load, setLoading] = useState(false); // Se declara el state inicial del loader
+  const [notLogged, setNotLogged] = useState(false);
 
   const getDog = async () => {
     // Se cambia el estado a true para que el loader se renderice
@@ -43,7 +45,24 @@ function Home() {
       });
   };
 
-  return (
+  const authUser = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        navigate("/");
+      } else {
+        setNotLogged(true);
+      }
+    });
+  };
+
+  useEffect(() => {
+    authUser();
+  }, []);
+
+  return notLogged ? (
+    <NotLogged />
+  ) : (
     <div className="Home">
       <div className="nav_bar">
         <button className="logout_btn" onClick={handleSignOut}>
