@@ -19,7 +19,6 @@
 
 h1 {
   font-size: 1.5rem;
-  font-weight: 400;
   text-align: center;
 }
 
@@ -52,7 +51,7 @@ input:focus {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 55%;
+  width: 65%;
 }
 
 .sign-up_button {
