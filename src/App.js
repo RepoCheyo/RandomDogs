@@ -15,8 +15,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="login" element={<Auth />} />
-          <Route path="resetpassword" element={<ResetPassword />} />
+          <Route path="login" caseSensitive={true} element={<Auth />} />
+          <Route
+            path="resetpassword"
+            caseSensitive={true}
+            element={<ResetPassword />}
+          />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

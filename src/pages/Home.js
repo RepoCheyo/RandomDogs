@@ -65,6 +65,12 @@ function Home() {
   ) : (
     <div className="Home">
       <div className="nav_bar">
+        <img
+          src="https://i.gifer.com/5AB5.gif"
+          alt="navbar_gif"
+          className="navbar_gif"
+        ></img>
+        <p className="logo">Random Dogs</p>
         <button className="logout_btn" onClick={handleSignOut}>
           Log Out
         </button>

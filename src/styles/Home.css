@@ -3,6 +3,9 @@
   height: 8vh;
   background-color: #f5f5f5;
   box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.3);
+  top: 0;
+  display: flex;
+  justify-content: space-around;
 }
 
 .logout_btn {
@@ -15,6 +18,18 @@
   margin: 9px;
   padding: 5px;
   cursor: pointer;
+}
+
+.navbar_gif {
+  height: 35px;
+  margin-top: 5px;
+}
+
+.logo {
+  color: black;
+  font-weight: 900;
+  font-size: 1.3rem;
+  margin-top: 9px;
 }
 
 .dog_btn {
@@ -32,21 +47,6 @@
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
-  background: linear-gradient(
-    to right,
-    rgb(0, 140, 255) 20%,
-    rgb(0, 221, 255) 40%,
-    rgb(255, 0, 217) 60%,
-    rgb(221, 0, 255) 80%
-  );
-  background-size: 200% auto;
-
-  color: #000;
-  background-clip: text;
-  text-fill-color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 10s linear infinite;
 }
 
 @keyframes shine {
