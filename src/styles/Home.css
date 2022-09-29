@@ -20,9 +20,19 @@
   cursor: pointer;
 }
 
+.emptydog_container {
+  margin: auto;
+  margin-top: 25px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
 .navbar_gif {
-  height: 35px;
-  margin-top: 5px;
+  height: 50%;
+  width: 20%;
+  margin-top: 25px;
+  margin-right: 20px;
 }
 
 .logo {
@@ -41,12 +51,12 @@
   border: none;
   cursor: pointer;
   transition: 0.1s;
+  margin-bottom: 20px;
 }
 
 .dog_msj {
   font-size: 3rem;
   font-weight: bold;
-  text-align: center;
 }
 
 @keyframes shine {

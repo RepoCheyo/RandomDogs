@@ -60,21 +60,37 @@ function Home() {
     authUser();
   }, []);
 
-  return notLogged ? (
-    <NotLogged />
-  ) : (
+  return (
     <div className="Home">
+      {notLogged && <NotLogged />}
       <div className="nav_bar">
-        <img
-          src="https://i.gifer.com/5AB5.gif"
-          alt="navbar_gif"
-          className="navbar_gif"
-        ></img>
         <p className="logo">Random Dogs</p>
         <button className="logout_btn" onClick={handleSignOut}>
           Log Out
         </button>
       </div>
+      {!load && !dog ? (
+        <div className="emptydog_container">
+          <img
+            src="https://i.gifer.com/5AB5.gif"
+            alt="navbar_gif"
+            className="navbar_gif"
+          ></img>
+          <p className="dog_msj">Here will be your dog</p>
+        </div>
+      ) : load && !dog ? (
+        <div style={{ marginLeft: 625, marginTop: 15 }}>
+          <RotatingLines
+            strokeColor="#cee5f2"
+            strokeWidth="6"
+            animationDuration="0.75"
+            width="20"
+            visible={true}
+          />
+        </div>
+      ) : (
+        <Dog dogImage={dog.message} /> // dog = a la API regresando el objeto y el .message es para acceder al link de la imagen
+      )}
       <button
         className="dog_btn"
         style={{
@@ -89,21 +105,6 @@ function Home() {
       >
         See a cute dog
       </button>
-      {!load && !dog ? (
-        <p className="dog_msj">Here will be your dog</p>
-      ) : load && !dog ? (
-        <div style={{ marginLeft: 625, marginTop: 15 }}>
-          <RotatingLines
-            strokeColor="#cee5f2"
-            strokeWidth="6"
-            animationDuration="0.75"
-            width="20"
-            visible={true}
-          />
-        </div>
-      ) : (
-        <Dog dogImage={dog.message} /> // dog = a la API regresando el objeto y el .message es para acceder al link de la imagen
-      )}
     </div>
   );
 }

@@ -1,19 +1,15 @@
-.notLogged_container {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  height: 100vh;
-}
-
 .bg_img {
   max-width: 99%;
   max-height: 99%;
 }
 
 .message_container {
-  height: 100vh;
+  height: 100%;
+  bottom: 0;
   width: 100%;
   position: absolute;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 9px 50px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(5.5px);
+  -webkit-backdrop-filter: blur(5.5px);
 }
