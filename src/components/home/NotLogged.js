@@ -6,14 +6,21 @@ function NotLogged() {
   return (
     <div className="notLogged_container">
       <div className="message_container">
-        <h1>Woof</h1>
-        <h5>Looks you are not a dog lover</h5>
-        <p>
-          <Link to="/login" className="notLogged_link">
-            Log in
-          </Link>
-          or <Link>Sign Up</Link> to get your dog
-        </p>
+        <div className="notLoggedmsj_container">
+          <h1>Sorry!</h1>
+          <img
+            src="https://img1.picmix.com/output/stamp/normal/3/2/0/9/449023_ba0e5.gif"
+            alt="notLogged_gif"
+            style={{ height: 250 }}
+          ></img>
+          <p className="">Looks you are not a registered</p>
+          <p>
+            <Link to="/login" className="notLogged_link">
+              Log in {""}
+            </Link>
+            or <Link className="notLogged_link">Sign Up</Link> to get your dog
+          </p>
+        </div>
       </div>
     </div>
   );
