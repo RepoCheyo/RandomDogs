@@ -1,23 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/SignUp.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../FirebaseConfig";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+import axios from "axios";
 
 function SignUp() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [ip, setIP] = useState();
+
+  const getData = async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    console.log(res.data);
+    setIP(res.data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   const createUser = (e) => {
     e.preventDefault();
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setDoc(doc(db, "users", user.uid, "signupdata", email), {
-          name: "Los Angeles",
-          state: "CA",
-          country: "USA",
+        setDoc(doc(db, "users", user.uid, "signupdata", user.accessToken), {
+          name,
+          ip,
         });
       })
       .catch((error) => {
