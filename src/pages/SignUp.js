@@ -27,10 +27,19 @@ function SignUp() {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        setDoc(doc(db, "users", user.uid, "signupdata", user.accessToken), {
-          name,
-          ip,
-        });
+        setDoc(
+          doc(
+            db,
+            "users",
+            user.uid,
+            "signupdata",
+            user.metadata.lastSignInTime
+          ),
+          {
+            name,
+            ip,
+          }
+        );
       })
       .catch((error) => {
         alert(error.message);

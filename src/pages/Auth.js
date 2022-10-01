@@ -19,7 +19,6 @@ function Auth() {
 
   const getData = async () => {
     const res = await axios.get("https://geolocation-db.com/json/");
-    console.log(res.data);
     setIP(res.data);
   };
 
@@ -36,9 +35,12 @@ function Auth() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        setDoc(doc(db, "users", user.uid, "logs", user.accessToken), {
-          ip,
-        });
+        setDoc(
+          doc(db, "users", user.uid, "logs", user.metadata.lastSignInTime),
+          {
+            ip,
+          }
+        );
         navigate("/"); // Once the user signs in redirects to the Home page
       })
       .catch((error) => {
