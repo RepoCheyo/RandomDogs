@@ -3,9 +3,11 @@ import "../styles/SignUp.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
+import { RotatingLines } from "react-loader-spinner";
 import axios from "axios";
 
 function SignUp() {
+  const [load, setLoading] = useState(false);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -22,6 +24,7 @@ function SignUp() {
   }, []);
 
   const createUser = (e) => {
+    setLoading(true);
     e.preventDefault();
 
     createUserWithEmailAndPassword(auth, email, password)
@@ -42,38 +45,68 @@ function SignUp() {
         );
       })
       .catch((error) => {
+        setLoading(false);
         alert(error.message);
       });
   };
 
   return (
     <div className="signup-main-container">
-      <div className="signup_form_container">
-        <h5>Name or user name</h5>
-        <input
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-          value={name}
-        ></input>
+      <div className="su_form_container">
+        <div className="signup_form_container">
+          <h1 className="signup_letter">Random Dogs</h1>
 
-        <h5>E-mail</h5>
-        <input
-          type="text"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-        ></input>
+          <h5 className="signup_h5">Name or user name</h5>
+          <input
+            type="text"
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            maxlength="20"
+          ></input>
 
-        <h5>Password</h5>
-        <input
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        ></input>
-        <button onClick={createUser}>Create Acoount</button>
+          <h5 className="signup_h5">E-mail</h5>
+          <input
+            type="text"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          ></input>
+
+          <h5 className="signup_h5">Password</h5>
+          <input
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          ></input>
+          {load ? (
+            <button
+              disabled
+              className="signup_btn"
+              style={{ backgroundColor: "rgb(0, 188, 100)" }}
+            >
+              <RotatingLines
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.6"
+                width="17"
+                visible={true}
+              />
+            </button>
+          ) : (
+            <button onClick={createUser} className="signup_btn">
+              Create Account
+            </button>
+          )}
+        </div>
       </div>
+
       <div className="logo_letter_container">
-        <h1>Hi {name}, </h1>
-        <h3>welcome to dog heaven</h3>
+        <h1 className="logo_signup_letter">Welcome</h1>
+        <h3 className="logo_signup_name">{name}</h3>
+        <img
+          src="https://cdn.dribbble.com/users/4978497/screenshots/14371515/media/05a0e1c418c87d73d66e50990ff27c8c.gif"
+          alt="sign_up_gif_dog"
+          className="sign_up_gif_dog"
+        ></img>
       </div>
     </div>
   );

@@ -44,8 +44,8 @@ function Auth() {
         navigate("/"); // Once the user signs in redirects to the Home page
       })
       .catch((error) => {
-        alert(error.message);
         setLoading(false);
+        alert(error.message);
       });
   };
 
