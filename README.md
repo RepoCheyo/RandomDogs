@@ -5,7 +5,7 @@
 - API REST (For fetching the dogs image)
 - Loading animation (While the user sends the request for the image)
 - React Router (Routes for each page, 404 Error Page, Redirect to especific path)
-- Firebase
+- Firebase (log data, storage)
 
 ## Close additions:
 
