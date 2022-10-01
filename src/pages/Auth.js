@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Auth.css";
+import { doc, setDoc } from "firebase/firestore";
+import axios from "axios";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../FirebaseConfig";
+import { auth, db } from "../FirebaseConfig";
 import { Link, useNavigate } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
 
@@ -13,6 +15,18 @@ function Auth() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const [ip, setIP] = useState();
+
+  const getData = async () => {
+    const res = await axios.get("https://geolocation-db.com/json/");
+    console.log(res.data);
+    setIP(res.data);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   // Sign In Function
   const signIn = (e) => {
     setLoading(true);
@@ -22,6 +36,9 @@ function Auth() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        setDoc(doc(db, "users", user.uid, "logs", user.accessToken), {
+          ip,
+        });
         navigate("/"); // Once the user signs in redirects to the Home page
       })
       .catch((error) => {
