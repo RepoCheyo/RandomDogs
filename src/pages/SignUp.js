@@ -5,8 +5,11 @@ import { db, auth } from "../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { RotatingLines } from "react-loader-spinner";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const navigate = useNavigate();
+
   const [load, setLoading] = useState(false);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -43,6 +46,7 @@ function SignUp() {
             ip,
           }
         );
+        navigate("/");
       })
       .catch((error) => {
         setLoading(false);
@@ -81,7 +85,7 @@ function SignUp() {
             <button
               disabled
               className="signup_btn"
-              style={{ backgroundColor: "rgb(0, 188, 100)" }}
+              style={{ backgroundColor: "#db385e" }}
             >
               <RotatingLines
                 strokeColor="white"
