@@ -8,6 +8,7 @@ import { auth } from "./FirebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="login" caseSensitive={true} element={<Auth />} />
+          <Route path="signup" caseSensitive={true} element={<SignUp />} />
           <Route
             path="resetpassword"
             caseSensitive={true}

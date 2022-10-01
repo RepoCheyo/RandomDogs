@@ -59,12 +59,6 @@
   font-weight: bold;
 }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
-}
-
 .dog_btn:hover {
   background-color: rgb(3, 119, 215);
 }

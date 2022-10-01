@@ -18,7 +18,11 @@ function NotLogged() {
             <Link to="/login" className="notLogged_link">
               Log in {""}
             </Link>
-            or <Link className="notLogged_link">Sign Up</Link> to get your dog
+            or{" "}
+            <Link to="/signup" className="notLogged_link">
+              Sign Up
+            </Link>{" "}
+            to get your dog
           </p>
         </div>
       </div>
