@@ -9,8 +9,8 @@
 
 ## Close additions:
 
-- Sign Up page and funcitonality (With profile preview of name, profile picture with the upload functionality or link)
 - Navbar design
+- Profile picture upload functionality 
 - Form validation with error feedback (Toasts Notifications and under the input field)
 - Get the user location everytime it Logs In and Logs Out with time
 - Redux functionality to pass the user data alogn the App
