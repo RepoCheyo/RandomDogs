@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import "../styles/SignUp.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth } from "../FirebaseConfig";
-import { addDoc, doc, setDoc } from "firebase/firestore";
-import axios from "axios";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 function SignUp() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [ip, setIP] = useState();
 
   const createUser = (e) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setDoc(doc(db, "users", email), {
+        const user = userCredential.user;
+        setDoc(doc(db, "users", user.uid, "signupdata", email), {
           name: "Los Angeles",
           state: "CA",
           country: "USA",
