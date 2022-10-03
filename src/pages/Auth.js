@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/Auth.css";
 import { doc, setDoc } from "firebase/firestore";
 import axios from "axios";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../FirebaseConfig";
 import { Link, useNavigate } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
@@ -15,6 +15,8 @@ function Auth() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const [notLogged, setNotLogged] = useState(false);
+
   const [ip, setIP] = useState();
 
   const getData = async () => {
@@ -22,8 +24,20 @@ function Auth() {
     setIP(res.data);
   };
 
+  const authUser = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        navigate("/");
+      } else {
+        setNotLogged(true);
+      }
+    });
+  };
+
   useEffect(() => {
     getData();
+    authUser();
   }, []);
 
   // Sign In Function
