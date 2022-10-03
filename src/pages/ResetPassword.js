@@ -32,6 +32,9 @@ function ResetPassword() {
               className="mail_dog_image"
             ></img>
             <h1 className="headers">Check your Mail</h1>
+            <p style={{ marginLeft: "60px", marginTop: "-15px", fontSize: 12 }}>
+              Reset E-mail it has been sent!
+            </p>
             <div className="back_login_cont">
               <h5 className="text">
                 On password reseted go back to{" "}

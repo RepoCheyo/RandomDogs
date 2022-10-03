@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../styles/SignUp.css";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { db, auth } from "../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { RotatingLines } from "react-loader-spinner";
@@ -14,6 +17,7 @@ function SignUp() {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [notLogged, setNotLogged] = useState(false);
   const [ip, setIP] = useState();
 
   const getData = async () => {
@@ -22,8 +26,20 @@ function SignUp() {
     setIP(res.data);
   };
 
+  const authUser = () => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        navigate("/");
+      } else {
+        setNotLogged(true);
+      }
+    });
+  };
+
   useEffect(() => {
     getData();
+    authUser();
   }, []);
 
   const createUser = (e) => {
