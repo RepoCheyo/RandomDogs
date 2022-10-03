@@ -7,6 +7,8 @@ import { auth } from "../FirebaseConfig";
 import Dog from "../components/home/Dog";
 import { useNavigate } from "react-router-dom";
 import NotLogged from "../components/home/NotLogged";
+import { FaDog } from "react-icons/fa";
+import { VscTriangleDown } from "react-icons/vsc";
 
 function Home() {
   const navigate = useNavigate();
@@ -65,6 +67,27 @@ function Home() {
       {notLogged && <NotLogged />}
       <div className="nav_bar">
         <p className="logo">Random Dogs</p>
+
+        <div className="profile_container">
+          <FaDog
+            style={{
+              marginTop: "10px",
+              color: "white",
+              backgroundColor: "red",
+              borderRadius: "100%",
+              fontSize: 15,
+              padding: "5px",
+            }}
+          />
+          <VscTriangleDown
+            style={{
+              color: "gray",
+              marginTop: 18,
+              marginLeft: 2,
+              fontSize: 10,
+            }}
+          />
+        </div>
         <button className="logout_btn" onClick={handleSignOut}>
           Log Out
         </button>
