@@ -15,8 +15,7 @@
   font-weight: 700;
   border: none;
   border-radius: 9px;
-  margin: 9px;
-  padding: 5px;
+  padding: 8px;
   cursor: pointer;
 }
 
@@ -45,7 +44,6 @@
 .profile_container {
   display: flex;
   justify-content: space-around;
-  cursor: pointer;
 }
 
 .dog_btn {

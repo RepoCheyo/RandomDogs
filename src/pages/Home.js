@@ -2,16 +2,18 @@ import React from "react";
 import "../styles/Home.css";
 import { useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../FirebaseConfig";
 import Dog from "../components/home/Dog";
 import { useNavigate } from "react-router-dom";
 import NotLogged from "../components/home/NotLogged";
 import { FaDog } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
+import ProfileModal from "../components/home/ProfileModal";
 
 function Home() {
   const navigate = useNavigate();
+  const [pmodal, setPModal] = useState(false);
   const [dog, setDog] = useState(null);
   const [load, setLoading] = useState(false); // Se declara el state inicial del loader
   const [notLogged, setNotLogged] = useState(false);
@@ -32,19 +34,6 @@ function Home() {
 
     // Finalmente se regresa el estado al inicial para desmontar el componente
     setLoading(false);
-  };
-
-  //signOut function to redirect the user to the form page
-  const handleSignOut = (e) => {
-    e.preventDefault();
-
-    signOut(auth)
-      .then(() => {
-        navigate("login");
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
   };
 
   const authUser = () => {
@@ -68,7 +57,7 @@ function Home() {
       <div className="nav_bar">
         <p className="logo">Random Dogs</p>
 
-        <div className="profile_container">
+        <div className="profile_container" onClick={(e) => setPModal(!pmodal)}>
           <FaDog
             style={{
               marginTop: "10px",
@@ -77,6 +66,7 @@ function Home() {
               borderRadius: "100%",
               fontSize: 15,
               padding: "5px",
+              cursor: "pointer",
             }}
           />
           <VscTriangleDown
@@ -85,12 +75,11 @@ function Home() {
               marginTop: 18,
               marginLeft: 2,
               fontSize: 10,
+              cursor: "pointer",
             }}
           />
+          {pmodal && <ProfileModal />}
         </div>
-        <button className="logout_btn" onClick={handleSignOut}>
-          Log Out
-        </button>
       </div>
       {!load && !dog ? (
         <div className="emptydog_container">

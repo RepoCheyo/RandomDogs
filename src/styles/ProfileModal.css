@@ -1,0 +1,19 @@
+.list-container {
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 5px 8px 0 #1f26875e;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 10px;
+  margin-top: 40px;
+  margin-left: -130px;
+}
+
+.list-container {
+  list-style: none;
+}
+
+li {
+  cursor: pointer;
+  margin-bottom: 5px;
+}

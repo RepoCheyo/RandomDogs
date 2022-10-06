@@ -1,11 +1,8 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import "./styles/App.css";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
-import { auth } from "./FirebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Auth from "./pages/Auth";
 import ResetPassword from "./pages/ResetPassword";
 import SignUp from "./pages/SignUp";
