@@ -22,11 +22,29 @@ function ProfileModal() {
   return (
     <div className="menu-container">
       <ul className="list-container">
-        <li>Yes</li>
-        <li>No</li>
-        <li>
+        <li
+          style={{
+            borderBottom: "1.5px solid #f5f5f5",
+            paddingTop: "7px",
+            paddingBottom: "7px",
+            paddingLeft: "10px",
+          }}
+        >
+          Profile
+        </li>
+        <li
+          style={{
+            borderBottom: "1.5px solid #f5f5f5",
+            paddingTop: "7px",
+            paddingBottom: "7px",
+            paddingLeft: "10px",
+          }}
+        >
+          Liked Dogs
+        </li>
+        <li style={{ paddingTop: "7px", paddingBottom: "7px" }}>
           <button className="logout_btn" onClick={handleSignOut}>
-            Log Out
+            Sign Out
           </button>
         </li>
       </ul>

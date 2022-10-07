@@ -54,6 +54,7 @@ function Home() {
   return (
     <div className="Home">
       {notLogged && <NotLogged />}
+
       <div className="nav_bar">
         <p className="logo">Random Dogs</p>
 
@@ -62,7 +63,7 @@ function Home() {
             style={{
               marginTop: "10px",
               color: "white",
-              backgroundColor: "red",
+              backgroundColor: "#ff4d6d",
               borderRadius: "100%",
               fontSize: 15,
               padding: "5px",
@@ -93,10 +94,10 @@ function Home() {
       ) : load && !dog ? (
         <div style={{ marginLeft: 625, marginTop: 15 }}>
           <RotatingLines
-            strokeColor="#cee5f2"
-            strokeWidth="6"
+            strokeColor="#ede7e3"
+            strokeWidth="5"
             animationDuration="0.75"
-            width="20"
+            width="17"
             visible={true}
           />
         </div>
