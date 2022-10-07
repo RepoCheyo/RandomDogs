@@ -9,7 +9,6 @@
 
 ## Close additions:
 
-- Form validation with error feedback (Toasts Notifications and under the input field)
 - Profile picture upload functionality 
 - Redux functionality to pass the user data alogn the App
 - Like button on each called photo (Firebase & Redux)
