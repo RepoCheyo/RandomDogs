@@ -8,7 +8,8 @@ import { db, auth } from "../FirebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 import { RotatingLines } from "react-loader-spinner";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function SignUp() {
   const navigate = useNavigate();
@@ -66,7 +67,16 @@ function SignUp() {
       })
       .catch((error) => {
         setLoading(false);
-        alert(error.message);
+        toast.error(error.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
@@ -116,6 +126,14 @@ function SignUp() {
               Create Account
             </button>
           )}
+          <div className="back_login_cont">
+            <h5 className="text">
+              Already have an account?{" "}
+              <Link to="/signup" className="back-login-link">
+                login
+              </Link>
+            </h5>
+          </div>
         </div>
       </div>
 
@@ -128,6 +146,8 @@ function SignUp() {
           className="sign_up_gif_dog"
         ></img>
       </div>
+
+      <ToastContainer />
     </div>
   );
 }

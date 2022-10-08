@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../FirebaseConfig";
 import { sendPasswordResetEmail } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
 import "../styles/ResetPassword.css";
 
 function ResetPassword() {
@@ -17,7 +18,16 @@ function ResetPassword() {
         alert("Reset Email send!");
       })
       .catch((error) => {
-        alert(error.message);
+        toast.error(error.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
       });
   };
 
@@ -50,7 +60,7 @@ function ResetPassword() {
           <form className="form_container_reset">
             <img
               src="https://i.pinimg.com/originals/f4/b2/93/f4b293a32db0415d378080badfd6db7f.gif"
-              alt="image-send"
+              alt="email-send-img"
             ></img>
             <h1 className="headers">Send Reset Email</h1>
             <h5 className="text">E-mail</h5>
@@ -75,6 +85,7 @@ function ResetPassword() {
           </form>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 }

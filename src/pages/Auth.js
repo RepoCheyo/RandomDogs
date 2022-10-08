@@ -127,6 +127,15 @@ function Auth() {
           </button>
         )}
       </form>
+
+      <div className="back_login_cont">
+        <h5 className="text">
+          Don't have an account?{" "}
+          <Link to="/signup" className="back-login-link">
+            Sign up
+          </Link>
+        </h5>
+      </div>
       <ToastContainer />
     </div>
   );
