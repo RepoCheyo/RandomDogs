@@ -6,12 +6,11 @@ import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../FirebaseConfig";
 import { Link, useNavigate } from "react-router-dom";
 import { RotatingLines } from "react-loader-spinner";
-import { ChakraProvider, useToast } from "@chakra-ui/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 function Auth() {
   const navigate = useNavigate();
-
-  const toast = useToast();
 
   const [load, setLoading] = useState(false); // Se declara el state inicial del loader
 
@@ -62,12 +61,15 @@ function Auth() {
       })
       .catch((error) => {
         setLoading(false);
-        toast({
-          title: "Error",
-          description: error.message,
-          status: "error",
-          duration: 5000,
-          isClosable: true,
+        toast.error(error.message, {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
         });
       });
   };
@@ -125,8 +127,7 @@ function Auth() {
           </button>
         )}
       </form>
-
-      <ChakraProvider></ChakraProvider>
+      <ToastContainer />
     </div>
   );
 }
