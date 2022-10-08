@@ -6,10 +6,10 @@
 - Loading animation (While the user sends the request for the image)
 - React Router (Routes for each page, 404 Error Page, Redirect to especific path)
 - Firebase (log data, storage)
+- Chakra UI (Toasts)
 
 ## Close additions:
 
-- Form validation with error feedback (Toasts Notifications and under the input field)
 - Profile picture upload functionality 
 - Redux functionality to pass the user data alogn the App
 - Like button on each called photo (Firebase & Redux)
