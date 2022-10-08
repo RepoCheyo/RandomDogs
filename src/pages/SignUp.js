@@ -129,7 +129,7 @@ function SignUp() {
           <div className="back_login_cont">
             <h5 className="text">
               Already have an account?{" "}
-              <Link to="/signup" className="back-login-link">
+              <Link to="/login" className="back-login-link">
                 login
               </Link>
             </h5>
