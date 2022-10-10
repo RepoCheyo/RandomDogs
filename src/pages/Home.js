@@ -10,10 +10,12 @@ import NotLogged from "../components/home/NotLogged";
 import { FaDog } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import ProfileModal from "../components/home/ProfileModal";
+import ProfileSettings from "../components/home/ProfileSettings";
 
 function Home() {
   const navigate = useNavigate();
   const [pmodal, setPModal] = useState(false);
+  const [pSettings, setPSettings] = useState(false);
   const [dog, setDog] = useState(null);
   const [load, setLoading] = useState(false); // Se declara el state inicial del loader
   const [notLogged, setNotLogged] = useState(false);
@@ -47,6 +49,11 @@ function Home() {
     });
   };
 
+  const handleProfMenu = () => {
+    setPModal(false);
+    setPSettings(true);
+  };
+
   useEffect(() => {
     authUser();
   }, []);
@@ -54,7 +61,7 @@ function Home() {
   return (
     <div className="Home">
       {notLogged && <NotLogged />}
-
+      {pSettings && <ProfileSettings />}
       <div className="nav_bar">
         <p className="logo">Random Dogs</p>
 
@@ -79,7 +86,7 @@ function Home() {
               cursor: "pointer",
             }}
           />
-          {pmodal && <ProfileModal />}
+          {pmodal && <ProfileModal onClick={handleProfMenu} />}
         </div>
       </div>
       {!load && !dog ? (

@@ -1,14 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../styles/ProfileModal.css";
 import { signOut } from "firebase/auth";
 import { auth } from "../../FirebaseConfig";
 import { useNavigate } from "react-router-dom";
-import ProfileSettings from "./ProfileSettings";
 
-function ProfileModal() {
+function ProfileModal(props) {
   const navigate = useNavigate();
-
-  const [pSettings, setPSettings] = useState(false);
 
   const handleSignOut = (e) => {
     e.preventDefault();
@@ -33,7 +30,7 @@ function ProfileModal() {
             paddingBottom: "7px",
             paddingLeft: "10px",
           }}
-          onClick={(e) => setPSettings(true)}
+          onClick={props.onClick}
         >
           Profile
         </li>
@@ -53,7 +50,6 @@ function ProfileModal() {
           </button>
         </li>
       </ul>
-      {pSettings && alert("hi")}
     </div>
   );
 }
