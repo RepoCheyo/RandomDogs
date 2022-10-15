@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { ref, uploadBytes, listAll } from "firebase/storage";
+import React, { useState } from "react";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../FirebaseConfig";
 import { ToastContainer, toast } from "react-toastify";
+import { IoClose } from "react-icons/io5";
 
 function ProfileSettings(props) {
   const [profileP, setProfileP] = useState(null);
@@ -15,7 +16,14 @@ function ProfileSettings(props) {
           .substring(0, 6)}`
       );
 
-      uploadBytes(imgRef, profileP).then((snapshot) => {
+      uploadBytes(imgRef, profileP, getDownloadURL).then((snapshot) => {
+        const getImage = async () => {
+          const ImageURL = await getDownloadURL(imgRef);
+          setProfileP(ImageURL);
+        };
+
+        getImage();
+
         toast.success("Image Uploaded", {
           position: "bottom-right",
           autoClose: 5000,
@@ -41,18 +49,29 @@ function ProfileSettings(props) {
     }
   };
 
-  // const pfpRef = ref(storage, "users_imgs");
-
-  // useEffect(() => {
-  //listAll(pfpRef).then((response) => {
-  // console.log(response.json);
-  //});
-  //}, []);
-
   return (
     <div className="notLogged_container">
       <div className="message_container">
         <div className="notLoggedmsj_container">
+          <button
+            onClick={props.closeModal}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              marginRight: -600,
+            }}
+          >
+            <IoClose
+              style={{
+                background: "#E5E5E5",
+                fontSize: 20,
+                borderRadius: "100%",
+                color: "gray",
+                padding: 2,
+              }}
+            />
+          </button>
           <h1
             style={{
               textAlign: "left",
