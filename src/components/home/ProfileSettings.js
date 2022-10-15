@@ -1,13 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ref, uploadBytes, listAll } from "firebase/storage";
+import { storage } from "../../FirebaseConfig";
+import { ToastContainer, toast } from "react-toastify";
 
 function ProfileSettings(props) {
-  const [profileP, setProfileP] = useState();
+  const [profileP, setProfileP] = useState(null);
 
-  const onImageChange = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      setProfileP(URL.createObjectURL(event.target.files[0]));
+  const uploadImg = () => {
+    if (profileP) {
+      const imgRef = ref(
+        storage,
+        `users_imgs/${(new Date() * Math.random())
+          .toString(36)
+          .substring(0, 6)}`
+      );
+
+      uploadBytes(imgRef, profileP).then((snapshot) => {
+        toast.success("Image Uploaded", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: false,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
+    } else {
+      toast.error("Image not selected", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
     }
   };
+
+  // const pfpRef = ref(storage, "users_imgs");
+
+  // useEffect(() => {
+  //listAll(pfpRef).then((response) => {
+  // console.log(response.json);
+  //});
+  //}, []);
 
   return (
     <div className="notLogged_container">
@@ -81,17 +121,20 @@ function ProfileSettings(props) {
                   zIndex: 100,
                 }}
                 type="file"
-                onChange={onImageChange}
+                onChange={(event) => {
+                  setProfileP(event.target.files[0]);
+                }}
                 accept="image/png, image/gif, image/jpeg"
               />
               <p style={{ marginTop: "-22px" }}>Select Photo</p>
             </div>
           </div>
-          <button className="submit_email" onClick={props.onClick}>
+          <button className="submit_email" onClick={uploadImg}>
             Save Changes
           </button>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -61,13 +61,7 @@ function Home() {
   return (
     <div className="Home">
       {notLogged && <NotLogged />}
-      {pSettings && (
-        <ProfileSettings
-          onClick={(e) => {
-            setPSettings(false);
-          }}
-        />
-      )}
+      {pSettings && <ProfileSettings />}
       <div className="nav_bar">
         <p className="logo">Random Dogs</p>
 
