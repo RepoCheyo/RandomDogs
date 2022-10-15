@@ -10,7 +10,6 @@
 
 ## Close additions:
 
-- Profile picture upload functionality 
 - Redux functionality to pass the user data alogn the App
 - Like button on each called photo (Firebase & Redux)
 - Add doc everytime the API is called with that make a history page with all the dogs that they have seen
