@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { storage } from "../../FirebaseConfig";
+import { storage, auth } from "../../FirebaseConfig";
 import { ToastContainer, toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
 
 function ProfileSettings(props) {
   const [profileP, setProfileP] = useState(null);
+  const [url, setUrl] = useState(
+    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+  );
+
+  const user = auth.currentUser;
+  const imgRef = ref(storage, `users_imgs/${user.uid}/ pfp`);
+
+  const loadPfp = async () => {
+    const pfpUrl = await getDownloadURL(imgRef);
+    setUrl(pfpUrl);
+  };
 
   const uploadImg = () => {
     if (profileP) {
-      const imgRef = ref(
-        storage,
-        `users_imgs/${(new Date() * Math.random())
-          .toString(36)
-          .substring(0, 6)}`
-      );
-
       uploadBytes(imgRef, profileP, getDownloadURL).then((snapshot) => {
-        const getImage = async () => {
-          const ImageURL = await getDownloadURL(imgRef);
-          setProfileP(ImageURL);
-        };
-
-        getImage();
+        getDownloadURL(imgRef).then((url) => {
+          setUrl(url);
+        });
 
         toast.success("Image Uploaded", {
           position: "bottom-right",
@@ -48,6 +49,10 @@ function ProfileSettings(props) {
       });
     }
   };
+
+  useEffect(() => {
+    loadPfp();
+  }, []);
 
   return (
     <div className="notLogged_container">
@@ -93,31 +98,16 @@ function ProfileSettings(props) {
               justifyContent: "center",
             }}
           >
-            {profileP ? (
-              <img
-                alt="profile"
-                src={profileP}
-                style={{
-                  height: "200px",
-                  width: "200px",
-                  borderRadius: 100,
-                  margin: "30px",
-                }}
-              ></img>
-            ) : (
-              <img
-                alt="profile"
-                style={{
-                  height: "200px",
-                  width: "200px",
-                  borderRadius: 100,
-                  margin: "30px",
-                }}
-                src={
-                  "https://as2.ftcdn.net/v2/jpg/04/10/43/77/1000_F_410437733_hdq4Q3QOH9uwh0mcqAhRFzOKfrCR24Ta.jpg"
-                }
-              ></img>
-            )}
+            <img
+              alt="profile"
+              src={url}
+              style={{
+                height: "200px",
+                width: "200px",
+                borderRadius: 100,
+                margin: "30px",
+              }}
+            ></img>
 
             <div
               style={{
