@@ -3,6 +3,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage, auth } from "../../FirebaseConfig";
 import { ToastContainer, toast } from "react-toastify";
 import { IoClose } from "react-icons/io5";
+import ProfilePicture from "./ProfilePicture";
 
 function ProfileSettings(props) {
   const [profileP, setProfileP] = useState(null);
@@ -98,8 +99,7 @@ function ProfileSettings(props) {
               justifyContent: "center",
             }}
           >
-            <img
-              alt="profile"
+            <ProfilePicture
               src={url}
               style={{
                 height: "200px",
@@ -107,7 +107,7 @@ function ProfileSettings(props) {
                 borderRadius: 100,
                 margin: "30px",
               }}
-            ></img>
+            />
 
             <div
               style={{
