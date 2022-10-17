@@ -3,7 +3,7 @@ import "../styles/Home.css";
 import { useState, useEffect } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../FirebaseConfig";
+import { auth, db } from "../FirebaseConfig";
 import Dog from "../components/home/Dog";
 import { useNavigate } from "react-router-dom";
 import NotLogged from "../components/home/NotLogged";
@@ -11,11 +11,15 @@ import { FaDog } from "react-icons/fa";
 import { VscTriangleDown } from "react-icons/vsc";
 import ProfileModal from "../components/home/ProfileModal";
 import ProfileSettings from "../components/home/ProfileSettings";
+import { doc, setDoc } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify";
+import LikedDogs from "../components/home/LikedDogs";
 
 function Home() {
   const navigate = useNavigate();
   const [pmodal, setPModal] = useState(false);
   const [pSettings, setPSettings] = useState(false);
+  const [likedModal, setLikedModal] = useState(false);
   const [dog, setDog] = useState(null);
   const [load, setLoading] = useState(false); // Se declara el state inicial del loader
   const [notLogged, setNotLogged] = useState(false);
@@ -32,7 +36,7 @@ function Home() {
     // Insertar el objeto que contiene el link de la imagen en consola
     console.log(dogApi);
     // Cambiar el State de null a setDog al objeto de la API
-    setDog(dogApi);
+    setDog(dogApi.message);
 
     // Finalmente se regresa el estado al inicial para desmontar el componente
     setLoading(false);
@@ -49,6 +53,28 @@ function Home() {
     });
   };
 
+  const handleLike = () => {
+    const user = auth.currentUser;
+
+    let randomString = (Math.random() + 1).toString(36).substring(7);
+
+    setDoc(doc(db, "users", user.uid, "likes", randomString), {
+      dog,
+    });
+    getDog().catch((error) => {
+      toast.error(error.message, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      });
+    });
+  };
+
   const handleProfMenu = () => {
     setPModal(false);
     setPSettings(true);
@@ -62,6 +88,8 @@ function Home() {
     <div className="Home">
       {notLogged && <NotLogged />}
       {pSettings && <ProfileSettings closeModal={(e) => setPSettings(false)} />}
+      {likedModal && <LikedDogs closeModal={(e) => setLikedModal(false)} />}
+
       <div className="nav_bar">
         <p className="logo">Random Dogs</p>
 
@@ -86,7 +114,12 @@ function Home() {
               cursor: "pointer",
             }}
           />
-          {pmodal && <ProfileModal onClick={handleProfMenu} />}
+          {pmodal && (
+            <ProfileModal
+              onClick={handleProfMenu}
+              likedModal={(e) => setLikedModal(true)}
+            />
+          )}
         </div>
       </div>
       {!load && !dog ? (
@@ -109,7 +142,7 @@ function Home() {
           />
         </div>
       ) : (
-        <Dog dogImage={dog.message} /> // dog = a la API regresando el objeto y el .message es para acceder al link de la imagen
+        <Dog dogImage={dog} addLike={handleLike} /> // dog = a la API regresando el objeto y el .message es para acceder al link de la imagen
       )}
       <button
         className="dog_btn"
@@ -125,6 +158,7 @@ function Home() {
       >
         See a cute dog
       </button>
+      <ToastContainer />
     </div>
   );
 }

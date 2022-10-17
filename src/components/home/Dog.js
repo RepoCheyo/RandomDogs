@@ -18,6 +18,7 @@ function Dog(props) {
           marginTop: 5,
           borderRadius: 100,
         }}
+        onClick={props.addLike}
       />
       <img className="img" src={props.dogImage} alt="Dog"></img>
     </div>

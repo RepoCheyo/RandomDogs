@@ -41,6 +41,7 @@ function ProfileModal(props) {
             paddingBottom: "7px",
             paddingLeft: "10px",
           }}
+          onClick={props.likedModal}
         >
           Liked Dogs
         </li>
