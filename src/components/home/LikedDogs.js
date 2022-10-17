@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import { collection, doc, onSnapshot, snapshotEqual } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useState } from "react";
@@ -13,8 +14,15 @@ function LikedDogs(props) {
   useEffect(() => {
     const loadLiked = onSnapshot(
       collection(db, "users", user.uid, "likes"),
-      (doc) => {
-        console.log(doc.docs.length);
+      (querySnapshot) => {
+        const documents = querySnapshot.docs.map((doc) => {
+          return {
+            ...doc.data(),
+            id: doc.id,
+          };
+        });
+
+        console.log(documents);
       }
     );
   }, []);
@@ -52,10 +60,16 @@ function LikedDogs(props) {
           >
             Liked Dogs
           </h1>
+
+          <div></div>
         </div>
       </div>
     </div>
   );
 }
+
+//{likedDogs?.map((likedDogs) => (
+//            <img alt="liked_dog" src={likedDogs}></img>
+//        ))}
 
 export default LikedDogs;
