@@ -1,9 +1,9 @@
-import { async } from "@firebase/util";
-import { collection, doc, onSnapshot, snapshotEqual } from "firebase/firestore";
+import { collection, documentId, onSnapshot } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { auth, db } from "../../FirebaseConfig";
+import "../../styles/LikedDogs.css";
 
 function LikedDogs(props) {
   const user = auth.currentUser;
@@ -21,14 +21,14 @@ function LikedDogs(props) {
             id: doc.id,
           };
         });
-
         console.log(documents);
+        setLikedDogs(documents);
       }
     );
   }, []);
 
   return (
-    <div className="notLogged_container">
+    <div className="notLogged_container" style={{ zIndex: 999 }}>
       <div className="message_container">
         <div className="notLoggedmsj_container">
           <button
@@ -61,15 +61,20 @@ function LikedDogs(props) {
             Liked Dogs
           </h1>
 
-          <div></div>
+          <div className="liked-dogs-cont">
+            {likedDogs?.map((likedDogs) => (
+              <img
+                id={likedDogs}
+                alt="liked_dog"
+                src={likedDogs.dog}
+                className="liked-dog-img"
+              ></img>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-//{likedDogs?.map((likedDogs) => (
-//            <img alt="liked_dog" src={likedDogs}></img>
-//        ))}
 
 export default LikedDogs;
