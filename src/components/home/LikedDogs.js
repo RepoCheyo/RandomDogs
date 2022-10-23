@@ -1,7 +1,8 @@
-import { collection, documentId, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
+
 import { auth, db } from "../../FirebaseConfig";
 import "../../styles/LikedDogs.css";
 

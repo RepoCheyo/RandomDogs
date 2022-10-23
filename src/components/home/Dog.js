@@ -8,7 +8,6 @@ function Dog(props) {
     <div className="img_container">
       <RiHeart3Line
         style={{
-          position: "absolute",
           cursor: "pointer",
           background: "#FF0033",
           padding: 3,
