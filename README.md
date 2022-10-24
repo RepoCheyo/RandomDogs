@@ -11,7 +11,6 @@
 ## Close additions:
 
 - Redux 
-- Framer Motion
 - Make it responsive
 
 
